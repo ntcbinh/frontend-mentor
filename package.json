@@ -12,6 +12,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "sass": "^1.69.5",
     "vue": "^3.3.4"
   },
   "devDependencies": {
