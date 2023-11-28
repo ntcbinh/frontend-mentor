@@ -1,50 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Fraunces:wght@700');
 @import './base.scss';
+$dark-cyan: #3c8067;
+$cream: #f2ebe3;
+$dark-blue: #1c232b;
+$dark-grayis-blue: #6c7289;
+$white: #ffffff;
+$font-size: 14px;
+
+@mixin font-montserrat {
+  font-family: 'Montserrat', sans-serif;
+}
+
+@mixin font-fraunces {
+  font-family: 'Fraunces', serif;
+}
 
 #app {
+  font-size: $font-size;
   width: 100vw;
   height: 100vh;
   margin: 0 auto;
   padding: 2rem;
-  background-color: #faebd7;
+  background-color: $cream;
 
   font-weight: normal;
   position: relative;
+
   .product-card {
     position: absolute;
-    top: 12.5%;
-    left: calc(calc(100% - 900px)/2);
-    width: 75%;
-    height: 75%;
-    max-width: 900px;
-    max-height: 900px;
-    background-color: #ffffff;
+    width: calc(100% - 4rem);
+    height: calc(100% - 4rem);
+
+    background-color: $white;
     border-radius: 0.75rem;
+
     .card {
       display: flex;
       flex-direction: column;
       height: 100%;
-      > .image {
-        width: 50%;
-        max-width: 600px;
+
+      >.image {
         height: 100%;
         border-top-left-radius: 0.75rem;
-        border-bottom-left-radius: 0.75rem;
+        border-top-right-radius: 0.75rem;
         background-image: url('./images/image-product-mobile.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      >.description {
+        display: flex;
+        flex-direction: column;
+        padding: 2rem;
+        color: $dark-blue;
+        width: 100%;
+
+        >.type,
+        >.info {
+          @include font-montserrat;
+          font-weight: 500;
+          color: $dark-grayis-blue;
+          max-width: 18rem;
+          font-size: 1rem;
+        }
+
+        >.type {
+          letter-spacing: 0.5rem;
+          text-transform: uppercase;
+        }
+
+        >.name {
+          @include font-fraunces;
+          max-width: 14rem;
+          font-size: 2rem;
+          font-weight: 700;
+        }
+
+        >.price {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          padding-top: 2rem;
+          @include font-fraunces;
+
+          >.sale-price {
+            color: $dark-cyan;
+            font-size: 2rem;
+          }
+
+          >.normal-price {
+            color: $dark-grayis-blue;
+            font-size: normal;
+            text-decoration: line-through;
+            padding: 0 2rem;
+          }
+        }
+
+        >div:last-child {
+          padding: 2rem 0;
+
+          .add-to-cart.btn {
+            background-color: $dark-cyan;
+            color: $white;
+            height: 3rem;
+            width: 100%;
+            border: none;
+            border-radius: 0.75rem;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            >img {
+              width: 1rem;
+              height: auto;
+              margin-right: 0.25rem;
+            }
+          }
+        }
       }
     }
-  }
-}
-
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
   }
 }
 
@@ -58,14 +132,25 @@ a,
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 0 2rem;
+
     .product-card {
+      top: 12.5%;
+      left: calc(calc(100% - 900px)/2);
+      width: 75%;
+      height: 75%;
+      max-width: 900px;
+      max-height: 900px;
+
       .card {
         flex-direction: row;
         height: 100%;
-        > .image {
+
+        >.image {
+          width: 100%;
+          height: 100%;
+          border-top-right-radius: 0;
+          border-bottom-left-radius: 0.75rem;
           background-image: url('./images/image-product-desktop.jpg');
-          background-repeat: no-repeat;
-          background-size: cover;
         }
       }
     }
